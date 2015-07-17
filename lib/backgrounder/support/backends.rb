@@ -68,10 +68,6 @@ module CarrierWave
             ::Qu.enqueue worker, *args
           end
 
-          def enqueue_que(worker, *args)
-            ::Que.enqueue worker, *args
-          end
-
           def enqueue_qc(worker, *args)
             class_name, subject_id, mounted_as = args
             ::QC.enqueue "#{worker.name}.perform", class_name, subject_id, mounted_as.to_s

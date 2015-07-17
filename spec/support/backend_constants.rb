@@ -23,9 +23,6 @@ end
 module Qu
 end
 
-module Que
-end
-
 module Sidekiq
   module Client
   end
