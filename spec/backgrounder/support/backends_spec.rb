@@ -34,8 +34,8 @@ module CarrierWave::Backgrounder
       context 'active_job' do
         let(:args) { ['FakeClass', 1, :image] }
 
-        it 'invokes perform with string arguments' do
-          expect(MockWorker).to receive(:perform).with('FakeClass', '1', 'image')
+        it 'invokes perform_later with string arguments' do
+          expect(MockWorker).to receive(:perform_later).with('FakeClass', '1', 'image')
           mock_module.backend :active_job
           mock_module.enqueue_for_backend(MockWorker, *args)
         end
@@ -136,6 +136,16 @@ module CarrierWave::Backgrounder
           options = {:retry => false, :timeout => 60, :queue => :awesome_queue}
           mock_module.backend :sidekiq, options
           mock_module.enqueue_for_backend(MockSidekiqWorker, *args)
+        end
+
+        it 'does not override queue name if set it worker' do
+          expect(MockNamedSidekiqWorker).to receive(:client_push).with({ 'class' => MockNamedSidekiqWorker,
+                                                                    'retry' => false,
+                                                                    'timeout' => 60,
+                                                                    'args' => args })
+          options = {:retry => false, :timeout => 60}
+          mock_module.backend :sidekiq, options
+          mock_module.enqueue_for_backend(MockNamedSidekiqWorker, *args)
         end
       end
 

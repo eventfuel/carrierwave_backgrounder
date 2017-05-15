@@ -2,7 +2,6 @@
 
 [![Build Status](https://secure.travis-ci.org/lardawge/carrierwave_backgrounder.png)](http://travis-ci.org/lardawge/carrierwave_backgrounder)
 [![Code Climate](https://codeclimate.com/github/lardawge/carrierwave_backgrounder.png)](https://codeclimate.com/github/lardawge/carrierwave_backgrounder)
-[![Still Maintained](http://stillmaintained.com/lardawge/carrierwave_backgrounder.png)](http://stillmaintained.com/lardawge/carrierwave_backgrounder)
 
 I like CarrierWave. That being said, I don't like tying up app instances waiting for images to process.
 
@@ -115,7 +114,7 @@ This must be set before you assign an upload:
 ```
 
 ### Override worker
-To overide the worker in cases where additional methods need to be called or you have app specific requirements, pass the worker class as the
+To override the worker in cases where additional methods need to be called or you have app specific requirements, pass the worker class as the
 second argument:
 
 ```ruby
